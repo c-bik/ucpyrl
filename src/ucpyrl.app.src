@@ -1,0 +1,12 @@
+{application, ucpyrl,
+ [
+  {description, "LALR UCP packet parsing"},
+  {vsn, "0.0.1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { ucpyrl, []}},
+  {env, []}
+ ]}.

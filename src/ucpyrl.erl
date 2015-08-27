@@ -12,6 +12,8 @@
 %% Supervisor callbacks
 -export([init/1]).
 
+-export([test/0]).
+
 %% ===================================================================
 %% Application callbacks
 %% ===================================================================
@@ -32,3 +34,17 @@ stop(_State) ->
 init([]) ->
     io:format(user, "starting ucpyrl supervisor...~n", []),
     {ok, { {one_for_one, 5, 10}, []} }.
+
+
+test() ->
+    parse([16#02]++"00/00038/R/53//46"++[16#03]).
+
+parse(Data) when is_list(Data) ->
+    case ucpyrl_lexer:string(Data) of
+        {ok, Tokens, _} ->
+            case ucpyrl_grammer:parse(Tokens) of
+                {ok, ParseTree} -> ParseTree;
+                Error -> {Error, Tokens}
+            end;
+        Error -> Error
+    end.

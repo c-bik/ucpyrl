@@ -9,3 +9,7 @@ rel/example_project
 .concrete/DEV_MODE
 .rebar
 .swp
+*.dot
+ucpyrl_grammer.erl
+ucpyrl_lexer.erl
+*.swp
